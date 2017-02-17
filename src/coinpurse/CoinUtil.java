@@ -7,7 +7,7 @@ import java.util.List;
 public class CoinUtil {
 	
 	
-	public List<Coin> filterByCurrency(List<Coin> clist, String curr){
+	public static List<Coin> filterByCurrency(List<Coin> clist, String curr){
 		List <Coin> filterList = new ArrayList<Coin>();
 		for(Coin x: clist){
 			if(x.getCurrency().equalsIgnoreCase(curr)){
@@ -33,31 +33,27 @@ public class CoinUtil {
 		return coins;
 	}
 	public static void sumByCurrent(List<Coin> coins){
-		List<String> filterCurr = new ArrayList<String>();
-		List<Double> sumCurr = new ArrayList<Double>();
-		for(int k = 0 ; k < coins.size() ; k++){ 
-			sumCurr.add(0.0);
-		}
-		int count = 0;
-		filterCurr.add(coins.get(0).getCurrency());
-		sumCurr.set(0,coins.get(0).getValue());
-		count++;
-		for(int i = 1 ; i < coins.size() ;i++){
-			for (int j = 0 ; j < filterCurr.size() ; j++){
-				if (coins.get(i).getCurrency().equalsIgnoreCase(filterCurr.get(j))){
-					sumCurr.set(j,sumCurr.get(j) + coins.get(i).getValue());
-					
-				}else
-					filterCurr.add(coins.get(i).getCurrency());
-					sumCurr.add(sumCurr.get(count) + coins.get(i).getValue());
-					count++;
+		SumCurr sc = new SumCurr();
+		
+		sc.filterCurr.add(coins.get(0).getCurrency());
+		sc.sumCurr.add(coins.get(0).getValue());
+		for(int i = 1 ; i < coins.size() ; i++){
+			boolean isAdd = false;
+			for(int j = 0 ; j < sc.filterCurr.size() ; j++){
+				if(coins.get(i).getCurrency() == sc.filterCurr.get(j)){
+					sc.sumCurr.set(j,sc.sumCurr.get(j)+coins.get(i).getValue());
+					isAdd = true;
+					break;
+				}
+			}
+			if(isAdd == false){
+				sc.filterCurr.add(coins.get(i).getCurrency());
+				sc.sumCurr.add(coins.get(i).getValue());
 			}
 		}
-		for(int o = 0 ; o <= filterCurr.size(); o++){
-			System.out.println(filterCurr.get(o));
-			System.out.println(sumCurr.get(o));
-			
-		}
+		
+		sc.print();
+		
 	}
 	
 }
