@@ -1,8 +1,10 @@
 package coinpurse;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+
 
 public class CoinUtil {
 	
@@ -32,28 +34,43 @@ public class CoinUtil {
 		}
 		return coins;
 	}
-	public static void sumByCurrent(List<Coin> coins){
-		SumCurr sc = new SumCurr();
-		
-		sc.filterCurr.add(coins.get(0).getCurrency());
-		sc.sumCurr.add(coins.get(0).getValue());
-		for(int i = 1 ; i < coins.size() ; i++){
-			boolean isAdd = false;
-			for(int j = 0 ; j < sc.filterCurr.size() ; j++){
-				if(coins.get(i).getCurrency() == sc.filterCurr.get(j)){
-					sc.sumCurr.set(j,sc.sumCurr.get(j)+coins.get(i).getValue());
-					isAdd = true;
-					break;
-				}
-			}
-			if(isAdd == false){
-				sc.filterCurr.add(coins.get(i).getCurrency());
-				sc.sumCurr.add(coins.get(i).getValue());
-			}
+	public static void sumByCurrent(List<Valuable> V){
+//		SumCurr sc = new SumCurr();
+		HashMap<String,Double> hm = new HashMap<String,Double>();
+		for(int i = 0; i < V.size() ; i++){
+			if(hm.containsKey(V.get(i).getCurrency())){
+				hm.put(V.get(i).getCurrency(), V.get(i).getValue() + hm.get(V.get(i).getCurrency()));
+			}else
+				hm.put(V.get(i).getCurrency(), V.get(i).getValue());
+		};
+		for (String x : hm.keySet()){
+			System.out.println(x+" sum value = "+hm.get(x));
 		}
 		
-		sc.print();
 		
+		
+		
+		
+//		sc.filterCurr.add(V.get(0).getCurrency());
+//		sc.sumCurr.add(coins.get(0).getValue());
+//		if()
+//		for(int i = 1 ; i < coins.size() ; i++){
+//			boolean isAdd = false;
+//			for(int j = 0 ; j < sc.filterCurr.size() ; j++){
+//				if(coins.get(i).getCurrency() == sc.filterCurr.get(j)){
+//					sc.sumCurr.set(j,sc.sumCurr.get(j)+coins.get(i).getValue());
+//					isAdd = true;
+//					break;
+//				}
+//			}
+//			if(isAdd == false){
+//				sc.filterCurr.add(coins.get(i).getCurrency());
+//				sc.sumCurr.add(coins.get(i).getValue());
+//			}
+//		}
+//		
+//		sc.print();
+//		
 	}
 	
 }

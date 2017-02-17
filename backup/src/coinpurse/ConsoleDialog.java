@@ -40,18 +40,11 @@ public class ConsoleDialog implements Runnable{
 		Scanner console = new Scanner(System.in);
 		System.out.println("Welcome to dispost system");
 		System.out.println("Enter amount : ");
-		double amout = console.nextDouble();
 //		purse.withdraw(console.nextDouble());
-		if(amout >= 20){
-			if (purse.insert(new Banknote(amout))){
-				System.out.println("Disposting complete");
-			}else
-				System.out.println("Disposting failed");
+		if (purse.insert(new Coin(console.nextDouble()))){
+			System.out.println("Disposting complete");
 		}else
-			if (purse.insert(new Coin(amout))){
-				System.out.println("Disposting complete");
-			}else
-				System.out.println("Disposting failed");
+			System.out.println("Disposting failed");
 		
 		status();
 	}
@@ -62,28 +55,22 @@ public class ConsoleDialog implements Runnable{
 		Scanner console = new Scanner(System.in);
 		System.out.println("Welcome to withdraw system");
 		System.out.println("Enter amount : ");
-		double amout = console.nextDouble();
 //		purse.withdraw(console.nextDouble());
-		if(purse.getBalance() < amout) System.out.println("can't withdraw");
-		else print(purse.withdraw(amout));
+		print(purse.withdraw(console.nextDouble()));
 		status();
 	}
 	/**
 	 * print coin array (Trying)
 	 * @param c coin array that want to print
 	 */
-	public void print(Valuable[] c){
+	public void print(Coin[] c){
 		System.out.print("{ ");
 		int count = 0;
-		for (Valuable x: c){
-			
-				if(count == c.length-1){
-					System.out.print(" "+x.toString());
-				}else
-					System.out.print(" "+x.toString()+",");
-			
-				
-				
+		for (Coin x: c){
+			if(count == c.length-1){
+				System.out.print(" "+x.toString());
+			}else
+				System.out.print(" "+x.toString()+",");
 			count++;
 		}
 		System.out.print( " }\n");
@@ -92,8 +79,7 @@ public class ConsoleDialog implements Runnable{
 	 * show status of purse
 	 */
 	public void status(){
-		for(Valuable x :purse.ValuablePurse)
-			System.out.println(x.toString());
+		System.out.println(purse.toString());
 	}
 
 }

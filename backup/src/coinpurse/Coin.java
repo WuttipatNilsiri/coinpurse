@@ -1,6 +1,6 @@
 package coinpurse;
 
-public  class Coin  implements Valuable{
+public class Coin  implements Valuable{
 	double value;
 	String curr = "Bath";
 	/**
@@ -39,7 +39,7 @@ public  class Coin  implements Valuable{
 	/**
 	 * compare value of coin if it same value it will compare currency
 	 */
-	public int compareTo(Valuable c){
+	public int compareTo(Coin c){
 		  if(this.value-c.getValue() < 0.0){
 			  return -1;
 		  }else if(this.value-c.getValue() > 0.0){
@@ -48,11 +48,6 @@ public  class Coin  implements Valuable{
 			  return this.curr.compareToIgnoreCase(c.getCurrency());
 	}
 	public String toString(){
-		return value+"-"+curr+" coin";
-	}
-	@Override
-	public boolean equals() {
-		// TODO Auto-generated method stub
-		return false;
+		return value+"-"+curr;
 	}
 }

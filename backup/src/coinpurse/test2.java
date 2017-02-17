@@ -12,7 +12,7 @@ public class test2 {
 		purse.insert(new Coin(97,"b"));
 		purse.insert(new Coin(99,"b"));
 //		List <Coin> a = CoinUtil.sortByCurrency(purse.coinPurse);
-		CoinUtil.sumByCurrent(purse.ValuablePurse);
+		CoinUtil.sumByCurrent(purse.coinPurse);
 //		for (Coin x : a ){
 //			System.out.println(x.toString());
 //		}
