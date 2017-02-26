@@ -8,7 +8,7 @@ public interface Valuable extends Comparable<Valuable> {
 	public double getValue();
 	public String getCurrency();
 	public String toString();
-	public boolean equals();
+	
 //	public static void sort(List<Valuable> V) {
 //		int n = V.size();
 //		int  c, d;
