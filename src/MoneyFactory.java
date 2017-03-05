@@ -1,4 +1,4 @@
-package coinpurse;
+
 
 public abstract class MoneyFactory {
 	static String country;
@@ -6,6 +6,10 @@ public abstract class MoneyFactory {
 	MoneyFactory(){
 		
 	}
+	/**
+	 * get factory that depend on country
+	 * @return moneyFactory
+	 */
 	public static MoneyFactory getInstance(){
 		if(factory == null) {
 			if(country == null || country == "thai"){
@@ -17,7 +21,17 @@ public abstract class MoneyFactory {
 	      }
 	      return factory;	
 	}
+	/**
+	 * createMoney by double
+	 * @param value
+	 * @return valuable 
+	 */
 	public abstract Valuable createMoney(double value);
+	/**
+	 * createMoney by string
+	 * @param value
+	 * @return valuable 
+	 */
 	public Valuable createMoney(String value){
 		Valuable var = null;
 		double varDouble = Double.parseDouble(value);
@@ -28,6 +42,10 @@ public abstract class MoneyFactory {
 		}
 		return var;
 	}
+	/**
+	 * set country
+	 * @param countrys
+	 */
 	public static void setMoneyFactory(String countrys){
 		country = countrys;
 	}

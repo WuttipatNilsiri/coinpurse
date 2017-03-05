@@ -1,10 +1,13 @@
-package coinpurse;
+
 
 public class ThaiMoneyFactory extends MoneyFactory{
 	String curr;
 	public ThaiMoneyFactory(){
 		
 	}
+	/**
+	 *  create thai money
+	 */
 	public Valuable createMoney(double value){
 		Valuable var = null;
 		

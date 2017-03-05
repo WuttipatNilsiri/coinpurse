@@ -1,4 +1,4 @@
-package coinpurse;
+
 
 public class test {
 	public static void main(String[]args){

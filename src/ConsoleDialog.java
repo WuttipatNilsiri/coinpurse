@@ -1,4 +1,3 @@
-package coinpurse;
 
 import java.util.Scanner;
 
@@ -92,7 +91,7 @@ public class ConsoleDialog implements Runnable{
 	 * show status of purse
 	 */
 	public void status(){
-		for(Valuable x :purse.ValuablePurse)
+		for(Valuable x :purse.valuablePurse)
 			System.out.println(x.toString());
 	}
 

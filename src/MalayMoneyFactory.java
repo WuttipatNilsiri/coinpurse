@@ -1,10 +1,16 @@
-package coinpurse;
+
 
 public class MalayMoneyFactory extends MoneyFactory {
 	static String curr;
+	/**
+	 * MalayMoneyFactory instance
+	 */
 	public MalayMoneyFactory(){
 		
 	}
+	/**
+	 * create money in malay
+	 */
 	public Valuable createMoney(double value){
 		Valuable var = null;
 		if (value == 1 || value == 2 || value == 5 || value == 10 || value == 20 || value == 50 || value == 100){

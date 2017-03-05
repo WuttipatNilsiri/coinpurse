@@ -1,4 +1,3 @@
-package coinpurse;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -6,16 +5,16 @@ import java.util.Collections;
 import java.util.List;
 
 public  class Purse {
-	int capacity;
-	int count;
-	List <Valuable> ValuablePurse;
+	private int capacity;
+	private int count;
+	List <Valuable> valuablePurse;
 	/**
 	 * Purse contractor
 	 * @param capacity fix capacity
 	 */
 	public Purse(int capacity){
 		this.capacity = capacity;
-		this.ValuablePurse = new ArrayList<Valuable>(capacity);
+		this.valuablePurse = new ArrayList<Valuable>(capacity);
 		count = 0;
 		
 	}
@@ -32,7 +31,7 @@ public  class Purse {
 	 */
 	public double getBalance(){
 		double sum = 0;
-		for (Valuable x: this.ValuablePurse){
+		for (Valuable x: this.valuablePurse){
 			sum = sum + x.getValue();
 		}
 		return sum;
@@ -54,16 +53,14 @@ public  class Purse {
 	 * @returns true if adding is success
 	 */
 	public boolean insert(Valuable c){
-		if(count != capacity && c.getValue() > 0){
+		if(isFull() && c.getValue() > 0){
 			
-			ValuablePurse.add(c);
-			Collections.sort(ValuablePurse);
-			Collections.reverse(ValuablePurse);
+			valuablePurse.add(c);
+			Collections.sort(valuablePurse);
+			Collections.reverse(valuablePurse);
 			count++;
 			return true;
-		}else if (c.getValue() <= 0){
-			return false;
-		}else
+		}else 
 			return false;
 	}
 	/**
@@ -73,28 +70,26 @@ public  class Purse {
 	 */
 	public Valuable[] withdraw(double amount){
 		List <Valuable> withdw = new ArrayList<Valuable>();
-		List <Valuable> coinPursebackup = new ArrayList<Valuable>(ValuablePurse.size());
-		for (Valuable x : ValuablePurse){
+		List <Valuable> coinPursebackup = new ArrayList<Valuable>(valuablePurse.size());
+		for (Valuable x : valuablePurse){
 			coinPursebackup.add(x);
 		}
-	    
-	    
-		for(int i = 0; i < ValuablePurse.size(); i++){
-			withdw.add(ValuablePurse.get(i));
-			amount = amount - ValuablePurse.get(i).getValue();
-			coinPursebackup.remove(ValuablePurse.get(i));
+		for(int i = 0; i < valuablePurse.size(); i++){
+			withdw.add(valuablePurse.get(i));
+			amount = amount - valuablePurse.get(i).getValue();
+			coinPursebackup.remove(valuablePurse.get(i));
 			count--;
 			if(amount < 0){
-				withdw.remove(ValuablePurse.get(i));
-				amount = amount + ValuablePurse.get(i).getValue();
-				coinPursebackup.add(ValuablePurse.get(i));
+				withdw.remove(valuablePurse.get(i));
+				amount = amount + valuablePurse.get(i).getValue();
+				coinPursebackup.add(valuablePurse.get(i));
 				count++;
 			}if(amount == 0){
 				break;
 			}
 		}
 		if (amount == 0){
-			this.ValuablePurse = coinPursebackup;
+			this.valuablePurse = coinPursebackup;
 			Valuable[] withdwArr = new Valuable[withdw.size()];
 			return withdw.toArray(withdwArr);
 			

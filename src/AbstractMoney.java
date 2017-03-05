@@ -1,4 +1,4 @@
-package coinpurse;
+
 
 public abstract class AbstractMoney implements Valuable {
 	double value;
@@ -39,12 +39,6 @@ public abstract class AbstractMoney implements Valuable {
 			return 0;
 	}
 		
-//		  if(value-c.getValue() < 0.0){
-//			  return -1;
-//		  }else if(value-c.getValue() > 0.0){
-//			  return 1;
-//		  }else 
-//			  return curr.compareToIgnoreCase(c.getCurrency());
-//	}
+
 	
 }
